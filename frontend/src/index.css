@@ -1,0 +1,11 @@
+:root {
+  --color-primary: #4ade80;
+  --color-background: #000;
+  --color-text: #fff;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
