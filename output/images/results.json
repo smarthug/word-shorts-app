@@ -1,0 +1,23 @@
+[
+  {
+    "word": "exploit",
+    "meaning": "v. 이용하다, 착취하다; n. 업적",
+    "prompt": "A bustling factory interior filled with workers at sewing machines, their faces showing exhaustion and weariness. In the foreground, a shadowy figure of a manager looks on with a smirk, holding a clipboard and a stack of money, symbolizing exploitation. Bright overhead lights create a stark contrast, illuminating the workers' tired expressions against the darker tones of the manager's silhouette. The scene captures the tension between labor and authority. Style: digital art, vibrant colors, educational illustration style.",
+    "path": "/home/filadmin/word-shorts-app/output/images/exploit.png",
+    "slug": "exploit"
+  },
+  {
+    "word": "account for",
+    "meaning": "(문제를) 설명하다(=explain), 책임지다; (비중, 퍼센트를) 차지하다",
+    "prompt": "A colorful pie chart dominates the scene, with one quarter of it vividly highlighted in bright orange. Surrounding the chart, a diverse group of animated characters—scientists, teachers, and students—are engaged in a lively discussion, pointing at the chart. A chalkboard in the background shows mathematical equations and notes about percentages. The setting is a bright classroom filled with educational posters and books, conveying a sense of learning and explanation. Digital art, vibrant colors, educational illustration style.",
+    "path": "/home/filadmin/word-shorts-app/output/images/account-for.png",
+    "slug": "account-for"
+  },
+  {
+    "word": "particular",
+    "meaning": "adj. 특정한, 특별한",
+    "prompt": "A vibrant digital art scene featuring a close-up of a unique, rare flower in a lush garden. The flower stands out with its intricate patterns and vivid colors, surrounded by more common plants. Sunlight filters through the leaves, casting a warm glow on the flower, emphasizing its distinctiveness. In the background, a faint outline of other flowers hints at their similarities, contrasting with the singular beauty of this particular specimen. Educational illustration style, with clear labels identifying the flower as \"particular type.\"",
+    "path": "/home/filadmin/word-shorts-app/output/images/particular.png",
+    "slug": "particular"
+  }
+]
