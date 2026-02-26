@@ -14,7 +14,7 @@ from pathlib import Path
 from openai import OpenAI
 
 # 설정
-COMFYUI_URL = "http://localhost:8188"
+COMFYUI_URL = "http://localhost:8190"
 OUTPUT_DIR = Path("/home/filadmin/Desktop/word-shorts-output/images/v3")
 METADATA_DIR = Path("/home/filadmin/Desktop/word-shorts-output/metadata/v3")
 
@@ -44,7 +44,7 @@ def step1_generate_scenarios(word, meaning_en, meaning_kr, num_scenarios=10):
     """Step 1: 단어에 자연스러운 시나리오 생성"""
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4o",
             messages=[{
                 "role": "system",
                 "content": """You are a vocabulary learning expert who creates memorable visual scenarios.
@@ -77,14 +77,27 @@ Output format:
             response_format={"type": "json_object"}
         )
         
-        result = json.loads(response.choices[0].message.content)
-        # Handle both array and object with "scenarios" key
+        raw_content = response.choices[0].message.content
+        result = json.loads(raw_content)
+        # Handle various response formats
         if isinstance(result, list):
-            return result
-        elif "scenarios" in result:
-            return result["scenarios"]
-        else:
-            return list(result.values())[0] if result else []
+            # Ensure each item is a dict
+            scenarios = []
+            for item in result[:num_scenarios]:
+                if isinstance(item, dict):
+                    scenarios.append(item)
+                elif isinstance(item, str):
+                    scenarios.append({"scenario": item, "setting": "various"})
+            return scenarios
+        elif isinstance(result, dict):
+            if "scenarios" in result:
+                return result["scenarios"][:num_scenarios]
+            else:
+                # Try to extract first list value
+                for v in result.values():
+                    if isinstance(v, list):
+                        return v[:num_scenarios]
+        return []
             
     except Exception as e:
         print(f"  ⚠️ 시나리오 생성 에러: {e}")
@@ -94,7 +107,7 @@ def step2_generate_image_prompt(word, meaning_en, scenario, setting, style):
     """Step 2: 시나리오 + 스타일을 이미지 프롬프트로 변환"""
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4o",
             messages=[{
                 "role": "system",
                 "content": f"""You are an expert at creating image prompts for AI image generation.
@@ -174,8 +187,8 @@ def get_flux2_workflow(prompt, seed=None):
             },
             "class_type": "EmptyFlux2LatentImage"
         },
-        "77:68": {"inputs": {"value": 768}, "class_type": "PrimitiveInt"},  # Width (세로 비율)
-        "77:69": {"inputs": {"value": 1344}, "class_type": "PrimitiveInt"},  # Height (Shorts용 9:16)
+        "77:68": {"inputs": {"value": 1024}, "class_type": "PrimitiveInt"},  # Width
+        "77:69": {"inputs": {"value": 1024}, "class_type": "PrimitiveInt"},  # Height (1:1 비율)
         "77:73": {"inputs": {"noise_seed": seed}, "class_type": "RandomNoise"},
         "77:70": {
             "inputs": {
@@ -360,7 +373,7 @@ def process_word(word, meaning_en, meaning_kr, images_per_word=10):
         "meaning_en": meaning_en,
         "meaning_kr": meaning_kr,
         "version": "v3",
-        "resolution": "768x1344",
+        "resolution": "1024x1024",
         "scenarios_generated": scenarios,
         "images": word_results,
         "model": "flux-2-klein-4b",
