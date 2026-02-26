@@ -1,0 +1,153 @@
+.vocab-viewer {
+  position: fixed;
+  inset: 0;
+  background: #0f0f23;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 메인 카드 컨테이너 */
+.card-container {
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  max-height: 932px;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .card-container {
+    height: 90vh;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* 사이드 네비게이션 */
+.side-nav {
+  position: fixed;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+}
+
+@media (max-width: 767px) {
+  .side-nav {
+    right: 8px;
+    gap: 6px;
+  }
+}
+
+.word-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.word-dot:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.word-dot.active {
+  background: #4ecdc4;
+  border-color: white;
+  transform: scale(1.15);
+}
+
+.word-initial {
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* 상단 진행률 바 */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 100;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4ecdc4, #44a08d);
+  transition: width 0.3s ease;
+}
+
+/* 키보드 네비게이션 */
+.keyboard-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 12px 24px;
+  border-radius: 32px;
+  backdrop-filter: blur(8px);
+  z-index: 100;
+}
+
+.keyboard-nav button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.keyboard-nav button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.keyboard-nav button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.keyboard-nav span {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .keyboard-nav {
+    bottom: 10px;
+    padding: 8px 16px;
+    gap: 12px;
+  }
+  
+  .keyboard-nav button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .keyboard-nav span {
+    font-size: 12px;
+  }
+}

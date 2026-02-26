@@ -1,0 +1,208 @@
+.vocab-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #1a1a2e;
+  border-radius: 12px;
+}
+
+/* 배경 이미지 */
+.card-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.card-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-background img.loaded {
+  opacity: 1;
+}
+
+.loading-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.loading-spinner span {
+  font-size: 48px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+.placeholder-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #888;
+}
+
+.placeholder-emoji {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+/* 스타일 네비게이션 (상단) */
+.style-nav {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 16px;
+  border-radius: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.nav-btn:hover {
+  opacity: 1;
+}
+
+.style-badge {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.style-badge small {
+  font-size: 10px;
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+/* 오버레이 콘텐츠 */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 24px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.95));
+}
+
+.phrase-section {
+  margin-bottom: 16px;
+}
+
+.phrase {
+  font-size: 36px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 8px 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.meaning-en {
+  font-size: 16px;
+  color: #e0e0e0;
+  margin: 0 0 4px 0;
+  font-style: italic;
+}
+
+.meaning-kr {
+  font-size: 18px;
+  color: #4ecdc4;
+  margin: 0;
+  font-weight: 600;
+}
+
+.example-section {
+  margin-top: 12px;
+}
+
+.example {
+  font-size: 14px;
+  color: #ccc;
+  margin: 0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* 스타일 인디케이터 (하단 점) */
+.style-dots {
+  position: absolute;
+  bottom: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+  .phrase {
+    font-size: 28px;
+  }
+  
+  .meaning-kr {
+    font-size: 16px;
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+  
+  .style-dots {
+    bottom: 150px;
+  }
+}

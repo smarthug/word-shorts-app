@@ -1,0 +1,16 @@
+name = "word-shorts-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+account_id = "23a8bb2bfab8228cef0d34ed4fdba424"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "word-shorts-images"
+
+[[kv_namespaces]]
+binding = "METADATA"
+id = "e0c5e3cc2ee44ef7bfd472d411c32551"
+
+[vars]
+CORS_ORIGIN = "*"
